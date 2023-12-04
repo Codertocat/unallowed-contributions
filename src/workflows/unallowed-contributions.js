@@ -5,7 +5,7 @@ const yaml = require('js-yaml')
 const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
 
 
-const { notAllowed } = yaml.load(readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'))
+const { notAllowed } = yaml.load(fs.readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'))
 
 main()
 async function main() {
