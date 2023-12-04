@@ -30,8 +30,11 @@ jobs:
           # Returns list of changed files matching each filter
           filters: 'src/workflows/unallowed-contribution-filters.yml'
 
-      # When there are changes to files we can't accept, leave a comment
-      # explaining this to the PR author
       - name: "Comment about changes we can't accept"
         if: ${{ steps.filter.outputs.notAllowed || steps.filter.outputs.contentTypes}}
-        run: 'src/workflows/unallowed-contributions.js --paths ${{ steps.filter.outputs }} --pr ${{ context.payload.number }}'
+        run: src/workflows/unallowed-contributions.js
+        env:
+          ORGANIZATION: 'github'
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.number }}
+          FILE_PATHS: ${{ steps.filter.outputs }}
