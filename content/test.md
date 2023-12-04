@@ -1,0 +1,5 @@
+---
+type: rai
+---
+
+Hello world
