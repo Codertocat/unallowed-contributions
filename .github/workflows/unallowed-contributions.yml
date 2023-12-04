@@ -31,7 +31,7 @@ jobs:
           list-files: json
 
           # Returns list of changed files matching each filter
-          filters: '.github/unallowed-contribution-filters.yml'
+          filters: 'src/workflows/unallowed-contribution-filters.yml'
 
       - name: "Comment about changes we can't accept"
         if: ${{ steps.filter.outputs.notAllowed || steps.filter.outputs.contentTypes}}
