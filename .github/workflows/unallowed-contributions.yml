@@ -40,5 +40,5 @@ jobs:
           ORGANIZATION: 'github'
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.number }}
-          FILE_PATHS_NOTALLOWED: ${{ steps.filter.outputs.notAllowed_files }}
-          FILE_PATHS_CONTENTTYPES: ${{ steps.filter.outputs.contentTypes_files }}
+          FILE_PATHS_NOT_ALLOWED: ${{ steps.filter.outputs.notAllowed_files }}
+          FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.contentTypes_files }}
