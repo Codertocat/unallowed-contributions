@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { readFileSync } from 'fs'
-import yaml from 'js-yaml'
+const readFileSync = require('fs')
+const yaml = require('js-yaml')
 
 const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
 
