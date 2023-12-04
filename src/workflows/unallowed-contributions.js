@@ -1,12 +1,28 @@
-import { program } from 'commander'
+#!/usr/bin/env node
+const fs = require('fs')
+const yaml = require('js-yaml')
+const path = require('path')
 
-program
-  .description('Check if file paths match the exclude list and comment with a message if they do')
-  .option('--paths', 'Paths to check for changes')
-  .option('--pr', "Pull request number to post a comment on")
-  .parse(process.argv)
+const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
 
-const { paths, pr } = program.opts()
+console.log('not allowed', FILE_PATHS_NOT_ALLOWED)
 
-console.log('paths', paths)
-console.log('pr number', pr)
+
+const { notAllowed } = yaml.load(fs.readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'))
+console.log('cwd', process.cwd())
+
+main()
+async function main() {
+  const unallowedFiles = [...JSON.parse(FILE_PATHS_NOT_ALLOWED)]
+  for (const filePath of JSON.parse(FILE_PATHS_CONTENT_TYPES)) { 
+    // read fm and add to array if type is rai
+    const fileContent = fs.readFileSync(path.resolve(`./${filePath}`), 'utf8')
+    if (yaml.load(fileContent).data.type === 'rai') {
+      unallowedFiles.push(filePath)
+    }
+  }
+  if (unallowedFiles.length === 0) return
+
+  const reviewMessage = `👋 Hey there spelunker. It looks like you've modified some files that we can't accept as contributions:${unallowedFiles} You'll need to revert all of the files you changed that match that list using [GitHub Desktop](https://docs.github.com/en/free-pro-team@latest/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit-in-github-desktop) or \`git checkout origin/main <file name>\`. Once you get those files reverted, we can continue with the review process. :octocat:\n\nThe complete list of files we can't accept are:\n${notAllowed}\n\nWe also can't accept contributions to files in the content directory with frontmatter \`type: rai\`.`
+  console.log('review message', reviewMessage)
+}

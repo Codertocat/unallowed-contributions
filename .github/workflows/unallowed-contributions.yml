@@ -16,6 +16,9 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo contents
+        uses: actions/checkout@main
+      
       - name: Get files changed
         uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50
         id: filter
@@ -37,4 +40,5 @@ jobs:
           ORGANIZATION: 'github'
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.number }}
-          FILE_PATHS: ${{ steps.filter.outputs }}
+          FILE_PATHS_NOT_ALLOWED: ${{ steps.filter.outputs.notAllowed_files }}
+          FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.contentTypes_files }}
