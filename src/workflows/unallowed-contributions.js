@@ -8,6 +8,7 @@ console.log('not allowed', FILE_PATHS_NOT_ALLOWED)
 
 
 const { notAllowed } = yaml.load(fs.readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'))
+console.log('cwd', process.cwd())
 
 main()
 async function main() {
