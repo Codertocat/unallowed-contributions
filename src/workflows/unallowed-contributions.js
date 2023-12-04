@@ -1,5 +1,5 @@
 console.log('file paths not allowed', process.env.FILE_PATHS_NOTALLOWED)
-console.log('file paths not allowed', process.env.FILE_PATHS_NOTALLOWED)
+console.log('file paths content types', process.env.FILE_PATHS_CONTENTTYPES)
 console.log('file path', process.env.FILE_PATHS)
 console.log('chnages', process.env.CHANGES)
 console.log('pr number', process.env.PR_NUMBER)
