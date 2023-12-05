@@ -42,3 +42,4 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
           FILE_PATHS_NOT_ALLOWED: ${{ steps.filter.outputs.notAllowed_files }}
           FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.contentTypes_files }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
