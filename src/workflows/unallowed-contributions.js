@@ -8,7 +8,7 @@ const matter = require('gray-matter')
 const github = require('./github.js')
 
 const core = coreLib
-const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
+const { PR_NUMBER, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
 const octokit = github()
 
 const { notAllowed } = yaml.load(readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'))
@@ -32,10 +32,11 @@ async function main() {
 
   let workflowFailMessage = "It looks like you've modified some files that we can't accept as contributions."
   let createdComment
+  const [owner, repo] = REPO.split('/')
   try {
       createdComment = await octokit.rest.issues.createComment({
-      owner: ORGANIZATION,
-      repo: REPO,
+      owner,
+      repo,
       issue_number: PR_NUMBER,
       body: reviewMessage
     })
