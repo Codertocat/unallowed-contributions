@@ -3,7 +3,7 @@
 const coreLib = require('@actions/core')
 const { readFileSync } = require('fs')
 const yaml = require('js-yaml')
-const { matter } = require('gray-matter')
+const matter = require('gray-matter')
 
 const github = require('./github.js')
 
