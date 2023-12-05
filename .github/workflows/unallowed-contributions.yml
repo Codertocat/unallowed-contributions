@@ -6,7 +6,7 @@ name: Check unallowed file changes
 
 on:
   # Needed in lieu of `pull_request` so that PRs from a fork can be notified of unallowed changes.
-  pull_request:
+  pull_request_target:
 
 permissions:
   contents: read
