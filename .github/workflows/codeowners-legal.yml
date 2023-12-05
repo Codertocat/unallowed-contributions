@@ -14,6 +14,8 @@ on:
       - synchronize
     paths:
       - 'content/**'
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   codeowners-legal:
