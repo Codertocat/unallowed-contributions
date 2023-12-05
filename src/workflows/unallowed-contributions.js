@@ -14,7 +14,7 @@ const { PR_NUMBER, REPO_OWNER_AND_NAME, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTE
   process.env
 const [owner, repo] = REPO_OWNER_AND_NAME.split('/')
 const { unallowedFiles } = yaml.load(
-  readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'),
+  readFileSync('src/workflows/unallowed-contribution-filters.yml', 'utf8'),
 )
 console.log(unallowedFiles)
 
