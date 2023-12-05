@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const matter = require('gray-matter')
+const yaml = require('js-yaml')
 const path = require('path')
 
 const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
