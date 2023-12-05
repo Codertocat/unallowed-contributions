@@ -60,7 +60,8 @@ jobs:
             jq 'any(.reviews[]; select(length > 0))'
           )
           echo "Reviewer: $has_reviewer" 
-          if [ -z "$has_reviewer" ];then
+          if ! $has_reviewer" ]
+          then
             echo "Adding rachmari as reviewer"
             gh pr edit $PR --add-reviewer rachmari
           fi
