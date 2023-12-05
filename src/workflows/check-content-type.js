@@ -2,7 +2,7 @@
 
 import { readFileSync } from 'fs/promises'
 import coreLib from '@actions/core'
-import { matter } from 'gray-matter'
+import matter from 'gray-matter'
 
 const { FILE_PATHS_CONTENT_TYPES, CONTENT_TYPE } = process.env
 
