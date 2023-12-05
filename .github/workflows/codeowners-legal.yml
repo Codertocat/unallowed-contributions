@@ -58,9 +58,8 @@ jobs:
             gh pr view $PR --json reviews |
             jq 'any(.reviews[]; select(length > 0))'
           )
-          echo "Reviewer: $has_reviewer" 
           if ! $has_reviewer
           then
-            echo "Adding rachmari as reviewer"
-            gh pr edit $PR --add-reviewer codertocat
+            add_reviewer=$(gh pr edit $PR --add-reviewer codertocat)
+            echo "Status of adding reviwer $add_reviewer"
           fi
