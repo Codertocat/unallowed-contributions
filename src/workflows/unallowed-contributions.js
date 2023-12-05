@@ -36,8 +36,8 @@ async function main() {
       createdComment = await octokit.rest.issues.createComment({
       owner: ORGANIZATION,
       repo: REPO,
-      issue_number: parseInt(PR_NUMBER, 10)
-      body: reviewMessage,
+      issue_number: parseInt(PR_NUMBER, 10),
+      body: reviewMessage
     })
 
     workflowFailMessage = `${workflowFailMessage} Please see ${createdComment.data.html_url} for details.`
