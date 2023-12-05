@@ -15,8 +15,10 @@ if (!process.env.GITHUB_TOKEN) {
 const apiToken = process.env.GITHUB_TOKEN
 
 // See https://github.com/octokit/rest.js/issues/1207
-export default function github() {
+function github() {
   return new Octokit({
     auth: `token ${apiToken}`,
   })
 }
+
+module.exports = github
