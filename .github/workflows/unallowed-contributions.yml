@@ -9,9 +9,8 @@ on:
   pull_request_target:
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
-  issues: write
 
 jobs:
   triage:
