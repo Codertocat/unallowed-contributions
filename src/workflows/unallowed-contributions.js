@@ -10,15 +10,18 @@ const { notAllowed } = yaml.load(fs.readFileSync('./src/workflows/unallowed-cont
 
 main()
 async function main() {
-  const unallowedFiles = [...JSON.parse(FILE_PATHS_NOT_ALLOWED)]
+  const unallowedChangedFiles = [...JSON.parse(FILE_PATHS_NOT_ALLOWED)]
   for (const filePath of JSON.parse(FILE_PATHS_CONTENT_TYPES)) { 
     const { data } = matter(fs.readFileSync(`./${filePath}`, 'utf8'))
     if (data.type === 'rai') {
-      unallowedFiles.push(filePath)
+      unallowedChangedFiles.push(filePath)
     }
   }
-  if (unallowedFiles.length === 0) return
+  if (unallowedChangedFiles.length === 0) return
 
-  const reviewMessage = `👋 Hey there spelunker. It looks like you've modified some files that we can't accept as contributions:${unallowedFiles} You'll need to revert all of the files you changed that match that list using [GitHub Desktop](https://docs.github.com/en/free-pro-team@latest/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit-in-github-desktop) or \`git checkout origin/main <file name>\`. Once you get those files reverted, we can continue with the review process. :octocat:\n\nThe complete list of files we can't accept are:\n${notAllowed}\n\nWe also can't accept contributions to files in the content directory with frontmatter \`type: rai\`.`
+  const formattedUnallowedChangedFiles = `\n- ${unallowedChangedFiles.join('\n- ')}`
+  const formattedNotAllowed = `\n - ${notAllowed.join('\n -')}`
+
+  const reviewMessage = `👋 Hey there spelunker. It looks like you've modified some files that we can't accept as contributions:${formattedUnallowedChangedFiles} You'll need to revert all of the files you changed that match that list using [GitHub Desktop](https://docs.github.com/en/free-pro-team@latest/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit-in-github-desktop) or \`git checkout origin/main <file name>\`. Once you get those files reverted, we can continue with the review process. :octocat:\n\nThe complete list of files we can't accept are:\n${notAllowed}\n\nWe also can't accept contributions to files in the content directory with frontmatter \`type: rai\`.`
   console.log('review message', reviewMessage)
 }
