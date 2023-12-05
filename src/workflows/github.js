@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import dotenv from 'dotenv'
-import { Octokit } from '@octokit/rest'
+const dotenv = require('dotenv')
+const { Octokit } = require('@octokit/rest')
 
 if (!process.env.GITHUB_TOKEN) {
   dotenv.config()
