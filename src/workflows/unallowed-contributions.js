@@ -16,7 +16,6 @@ const [owner, repo] = REPO_OWNER_AND_NAME.split('/')
 const filters = yaml.load(
   readFileSync('src/workflows/unallowed-contribution-filters.yml', 'utf8'),
 )
-console.log(filters)
 
 main()
 
