@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'fs/promises'
+import { readFileSync } from 'fs'
 import coreLib from '@actions/core'
 import matter from 'gray-matter'
 
