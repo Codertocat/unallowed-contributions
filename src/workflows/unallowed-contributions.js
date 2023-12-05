@@ -5,7 +5,7 @@ const { readFileSync } = require('fs')
 const yaml = require('js-yaml')
 const { matter } = require('gray-matter')
 
-const github = require('#src/workflows/github.js')
+const github = require('./github.js')
 
 const core = coreLib
 const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
