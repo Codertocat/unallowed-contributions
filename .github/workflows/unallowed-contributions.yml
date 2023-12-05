@@ -34,7 +34,7 @@ jobs:
           filters: 'src/workflows/unallowed-contribution-filters.yml'
       - name: list
         run: |
-          echo ${{ github.event }}
+          echo ${{ toJSON(github.event) }}
 
       - name: "Comment about changes we can't accept"
         if: ${{ steps.filter.outputs.notAllowed || steps.filter.outputs.contentTypes}}
