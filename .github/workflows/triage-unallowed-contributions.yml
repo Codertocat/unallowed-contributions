@@ -37,6 +37,6 @@ jobs:
         run: src/workflows/unallowed-contributions.js
         env:
           REPO_OWNER_AND_NAME: ${{ github.repository }}
-          PR_NUMBER: ${{ context.payload.number }}
+          PR_NUMBER: ${{ github.event.number }}
           FILE_PATHS_NOT_ALLOWED: ${{ steps.filter.outputs.notAllowed_files }}
           FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.contentTypes_files }}
