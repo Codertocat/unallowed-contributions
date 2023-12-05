@@ -36,7 +36,7 @@ async function main() {
       createdComment = await octokit.rest.issues.createComment({
       owner: ORGANIZATION,
       repo: REPO,
-      issue_number: parseInt(PR_NUMBER, 10),
+      issue_number: PR_NUMBER,
       body: reviewMessage
     })
 
