@@ -17,7 +17,7 @@ async function main() {
   for (const filePath of JSON.parse(FILE_PATHS_CONTENT_TYPES)) { 
     // read fm and add to array if type is rai
     const fileContent = fs.readFileSync(`./${filePath}`, 'utf8')
-    if (yaml.loadAll(fileContent).dataa.type === 'rai') {
+    if (yaml.loadAll(fileContent).data.type === 'rai') {
       unallowedFiles.push(filePath)
     }
   }
