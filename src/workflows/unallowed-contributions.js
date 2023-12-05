@@ -30,7 +30,9 @@ async function main() {
   if (unallowedChangedFiles.length === 0) return
 
   // Formatted list of files to use in the PR comment
-  const listUnallowedChangedFiles = `\n- ${unallowedChangedFiles.join('\n- ')}\n`
+  const listUnallowedChangedFiles = unallowedChangedFiles
+    .map(file => `\n - ${file}`)
+    .join('')
   const listUnallowedFiles = `\n - ${filters.notAllowed.join('\n - ')}\n`
 
   const reviewMessage = `👋 Hey there spelunker. It looks like you've modified some files that we can't accept as contributions:${listUnallowedChangedFiles}\n You'll need to revert all of the files you changed that match that list using [GitHub Desktop](https://docs.github.com/en/free-pro-team@latest/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit-in-github-desktop) or \`git checkout origin/main <file name>\`. Once you get those files reverted, we can continue with the review process. :octocat:\n\nThe complete list of files we can't accept are:${listUnallowedFiles}\nWe also can't accept contributions to files in the content directory with frontmatter \`type: rai\`.`
