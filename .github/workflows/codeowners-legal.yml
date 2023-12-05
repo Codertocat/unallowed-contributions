@@ -45,7 +45,7 @@ jobs:
       - name: Check content type
         id: checkContentType
         if: ${{ steps.filter.outputs.rai}}
-        run: src/workflows/unallowed-contributions.js
+        run: src/workflows/check-content-type.js
         env:
           FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.rai }}
           CONTENT_TYPE: 'rai'
