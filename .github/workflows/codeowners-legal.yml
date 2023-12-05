@@ -14,13 +14,12 @@ on:
       - synchronize
     paths:
       - 'content/**'
-env:
-  GH_TOKEN: ${{ github.token }}
 
 jobs:
   codeowners-legal:
     runs-on: ubuntu-latest
     env:
+      GH_TOKEN: ${{ github.token }}
       PR: ${{ github.event.pull_request.html_url }}
 
     steps:
@@ -63,5 +62,5 @@ jobs:
           if ! $has_reviewer
           then
             echo "Adding rachmari as reviewer"
-            gh pr edit $PR --add-reviewer rachmari
+            gh pr edit $PR --add-reviewer codertocat
           fi
