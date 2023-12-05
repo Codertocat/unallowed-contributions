@@ -47,7 +47,7 @@ jobs:
         if: ${{ steps.filter.outputs.rai}}
         run: src/workflows/check-content-type.js
         env:
-          FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.rai }}
+          FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.rai_files }}
           CONTENT_TYPE: 'rai'
 
       - name: Add Legal team as a reviewer
