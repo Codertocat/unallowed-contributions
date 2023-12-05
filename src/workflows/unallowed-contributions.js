@@ -13,10 +13,10 @@ const octokit = github()
 const { PR_NUMBER, REPO_OWNER_AND_NAME, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } =
   process.env
 const [owner, repo] = REPO_OWNER_AND_NAME.split('/')
-const { unallowedFiles } = yaml.load(
+const filters = yaml.load(
   readFileSync('src/workflows/unallowed-contribution-filters.yml', 'utf8'),
 )
-console.log(unallowedFiles)
+console.log(filters)
 
 main()
 
@@ -32,7 +32,7 @@ async function main() {
 
   // Formatted list of files to use in the PR comment
   const listUnallowedChangedFiles = `\n- ${unallowedChangedFiles.join('\n- ')}\n`
-  const listUnallowedFiles = `\n - ${unallowedFiles.notAllowed.join('\n -')}\n`
+  const listUnallowedFiles = `\n - ${filters.notAllowed.join('\n -')}\n`
 
   const reviewMessage = `👋 Hey there spelunker. It looks like you've modified some files that we can't accept as contributions:${listUnallowedChangedFiles}\n You'll need to revert all of the files you changed that match that list using [GitHub Desktop](https://docs.github.com/en/free-pro-team@latest/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit-in-github-desktop) or \`git checkout origin/main <file name>\`. Once you get those files reverted, we can continue with the review process. :octocat:\n\nThe complete list of files we can't accept are:${listUnallowedFiles}\nWe also can't accept contributions to files in the content directory with frontmatter \`type: rai\`.`
 
