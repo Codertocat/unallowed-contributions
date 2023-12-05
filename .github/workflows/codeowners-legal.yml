@@ -49,9 +49,6 @@ jobs:
         env:
           FILE_PATHS_CONTENT_TYPES: ${{ steps.filter.outputs.rai_files }}
           CONTENT_TYPE: 'rai'
-      - name: Log output
-        run: |
-          echo ${{ steps.checkContentType.outputs.contentType }}
 
       - name: Add Legal team as a reviewer
         if: ${{ steps.checkContentType.outputs.contentType }}
@@ -60,7 +57,7 @@ jobs:
             gh pr view $PR --json reviews |
             jq 'any(.reviews[]; select(length > 0))'
           )
-          echo $has_reviewer
+          echo 'Reviewer: $has_reviewer'
           if ! $has_reviewer
           then
             echo "Adding rachmari as reviewer"
