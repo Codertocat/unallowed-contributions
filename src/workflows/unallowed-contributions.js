@@ -5,19 +5,14 @@ const path = require('path')
 
 const { PR_NUMBER, ORGANIZATION, REPO, FILE_PATHS_NOT_ALLOWED, FILE_PATHS_CONTENT_TYPES } = process.env
 
-console.log('not allowed', FILE_PATHS_NOT_ALLOWED)
-
-
 const { notAllowed } = yaml.load(fs.readFileSync('./src/workflows/unallowed-contribution-filters.yml', 'utf8'))
-console.log('cwd', process.cwd())
 
 main()
 async function main() {
   const unallowedFiles = [...JSON.parse(FILE_PATHS_NOT_ALLOWED)]
   for (const filePath of JSON.parse(FILE_PATHS_CONTENT_TYPES)) { 
-    // read fm and add to array if type is rai
-    const fileContent = fs.readFileSync(`./${filePath}`, 'utf8')
-    if (yaml.loadAll(fileContent).data.type === 'rai') {
+    const { data } = matter(fs.readFileSync(`./${filePath}`, 'utf8'))
+    if (data.type === 'rai') {
       unallowedFiles.push(filePath)
     }
   }
