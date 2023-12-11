@@ -25,7 +25,7 @@ async function main() {
   // Any changes to a file in the content directory could potentially
   // have `type: rai` so each changed content file's frontmatter needs
   // to be checked.
-  console.log('TARGET REPO RACHMARI/UNALLOWED-CONTRIBUTIONS')
+  console.log('THIS IS THE FORKED REPO CODE EXECUTING!!!!')
   console.log('File paths not allowed:', FILE_PATHS_NOT_ALLOWED)
   unallowedChangedFiles.push(...await checkContentType(JSON.parse(FILE_PATHS_CONTENT_TYPES), 'rai'))
 
