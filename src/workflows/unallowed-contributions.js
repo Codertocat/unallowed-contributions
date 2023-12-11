@@ -21,6 +21,8 @@ main()
 
 async function main() {
   // Files in the diff that match specific paths we don't allow
+  console.log('THIS IS THE FORKED REPO CODE EXECUTING!!!!')
+  console.log('File paths not allowed:', FILE_PATHS_NOT_ALLOWED)
   const unallowedChangedFiles = [...JSON.parse(FILE_PATHS_NOT_ALLOWED)]
   // Any changes to a file in the content directory could potentially
   // have `type: rai` so each changed content file's frontmatter needs
